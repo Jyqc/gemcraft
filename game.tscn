@@ -1,0 +1,635 @@
+[gd_scene load_steps=10 format=3 uid="uid://d3hhhnyhcnmsf"]
+
+[ext_resource type="Script" uid="uid://bfdcta38v08oo" path="res://scripts/player/player_stats.gd" id="1_80nbo"]
+[ext_resource type="Script" uid="uid://bqyan2353nj8u" path="res://scripts/autobattle/autobattle.gd" id="2_e2o6t"]
+[ext_resource type="Texture2D" uid="uid://d0ncbgxca8u7w" path="res://assets/diamond.png" id="2_hve3p"]
+[ext_resource type="Theme" uid="uid://bpemsrpr6p1ux" path="res://themes/gem_unselected.tres" id="2_j5wjh"]
+[ext_resource type="Script" uid="uid://d4kya5pqsfguw" path="res://scripts/autobattle/autobattle_enemy.gd" id="3_feb5d"]
+[ext_resource type="Script" uid="uid://cpv6nw1gwhc8j" path="res://scripts/player/player_sockets.gd" id="4_eow3j"]
+[ext_resource type="Script" uid="uid://qsjyn8o5st4m" path="res://scripts/autobattle/autobattle_zone.gd" id="4_fc0e3"]
+[ext_resource type="Script" uid="uid://oufx4ru8ilnh" path="res://scripts/player/player_inventory.gd" id="5_vef74"]
+[ext_resource type="Script" uid="uid://bhic8q37ugkvp" path="res://scripts/gem/gems.gd" id="10_hve3p"]
+
+[node name="GAME" type="Node"]
+
+[node name="GUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="GUI_VBOX" type="VBoxContainer" parent="GUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GUI_TOOLBAR" type="Panel" parent="GUI/GUI_VBOX"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="GUI_TOOLBAR_SPLIT" type="HBoxContainer" parent="GUI/GUI_VBOX/GUI_TOOLBAR"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GUI_TOOLBAR_LEFT" type="HBoxContainer" parent="GUI/GUI_VBOX/GUI_TOOLBAR/GUI_TOOLBAR_SPLIT"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VSeparator" type="VSeparator" parent="GUI/GUI_VBOX/GUI_TOOLBAR/GUI_TOOLBAR_SPLIT/GUI_TOOLBAR_LEFT"]
+layout_mode = 2
+
+[node name="GUI_TOOLBAR_HEALTH" type="VBoxContainer" parent="GUI/GUI_VBOX/GUI_TOOLBAR/GUI_TOOLBAR_SPLIT/GUI_TOOLBAR_LEFT"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="GUI_TOOLBAR_HEALTH_LABEL" type="Label" parent="GUI/GUI_VBOX/GUI_TOOLBAR/GUI_TOOLBAR_SPLIT/GUI_TOOLBAR_LEFT/GUI_TOOLBAR_HEALTH"]
+layout_mode = 2
+text = "Health"
+horizontal_alignment = 1
+
+[node name="GUI_TOOLBAR_HEALTH_VALUE" type="Label" parent="GUI/GUI_VBOX/GUI_TOOLBAR/GUI_TOOLBAR_SPLIT/GUI_TOOLBAR_LEFT/GUI_TOOLBAR_HEALTH"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "NA"
+horizontal_alignment = 1
+
+[node name="VSeparator2" type="VSeparator" parent="GUI/GUI_VBOX/GUI_TOOLBAR/GUI_TOOLBAR_SPLIT/GUI_TOOLBAR_LEFT"]
+layout_mode = 2
+
+[node name="GUI_AVATAR_STATS_ATTACK" type="VBoxContainer" parent="GUI/GUI_VBOX/GUI_TOOLBAR/GUI_TOOLBAR_SPLIT/GUI_TOOLBAR_LEFT"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="GUI_AVATAR_STATS_ATTACK_PHYSICAL_DAMAGE" type="HBoxContainer" parent="GUI/GUI_VBOX/GUI_TOOLBAR/GUI_TOOLBAR_SPLIT/GUI_TOOLBAR_LEFT/GUI_AVATAR_STATS_ATTACK"]
+layout_mode = 2
+
+[node name="GUI_AVATAR_STATS_ATTACK_PHYSICAL_DAMAGE_LABEL" type="Label" parent="GUI/GUI_VBOX/GUI_TOOLBAR/GUI_TOOLBAR_SPLIT/GUI_TOOLBAR_LEFT/GUI_AVATAR_STATS_ATTACK/GUI_AVATAR_STATS_ATTACK_PHYSICAL_DAMAGE"]
+layout_mode = 2
+text = "Physical damage :"
+horizontal_alignment = 1
+
+[node name="GUI_AVATAR_STATS_ATTACK_PHYSICAL_DAMAGE_VALUE" type="Label" parent="GUI/GUI_VBOX/GUI_TOOLBAR/GUI_TOOLBAR_SPLIT/GUI_TOOLBAR_LEFT/GUI_AVATAR_STATS_ATTACK/GUI_AVATAR_STATS_ATTACK_PHYSICAL_DAMAGE"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "NA"
+horizontal_alignment = 1
+
+[node name="GUI_TOOLBAR_CENTER" type="VBoxContainer" parent="GUI/GUI_VBOX/GUI_TOOLBAR/GUI_TOOLBAR_SPLIT"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="GUI_AVATAR_STATS" type="Panel" parent="GUI/GUI_VBOX/GUI_TOOLBAR/GUI_TOOLBAR_SPLIT/GUI_TOOLBAR_CENTER"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="GUI_AVATAR_STATS_VBOX" type="HBoxContainer" parent="GUI/GUI_VBOX/GUI_TOOLBAR/GUI_TOOLBAR_SPLIT/GUI_TOOLBAR_CENTER/GUI_AVATAR_STATS"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GUI_AVATAR_STATS_GENERAL" type="VBoxContainer" parent="GUI/GUI_VBOX/GUI_TOOLBAR/GUI_TOOLBAR_SPLIT/GUI_TOOLBAR_CENTER/GUI_AVATAR_STATS/GUI_AVATAR_STATS_VBOX"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="GUI_AVATAR_STATS_GENERAL_EXPERIENCE" type="HBoxContainer" parent="GUI/GUI_VBOX/GUI_TOOLBAR/GUI_TOOLBAR_SPLIT/GUI_TOOLBAR_CENTER/GUI_AVATAR_STATS/GUI_AVATAR_STATS_VBOX/GUI_AVATAR_STATS_GENERAL"]
+layout_mode = 2
+
+[node name="GUI_AVATAR_STATS_GENERAL_EXPERIENCE_LABEL" type="Label" parent="GUI/GUI_VBOX/GUI_TOOLBAR/GUI_TOOLBAR_SPLIT/GUI_TOOLBAR_CENTER/GUI_AVATAR_STATS/GUI_AVATAR_STATS_VBOX/GUI_AVATAR_STATS_GENERAL/GUI_AVATAR_STATS_GENERAL_EXPERIENCE"]
+layout_mode = 2
+text = "Experience :"
+horizontal_alignment = 1
+
+[node name="GUI_AVATAR_STATS_GENERAL_EXPERIENCE_VALUE" type="Label" parent="GUI/GUI_VBOX/GUI_TOOLBAR/GUI_TOOLBAR_SPLIT/GUI_TOOLBAR_CENTER/GUI_AVATAR_STATS/GUI_AVATAR_STATS_VBOX/GUI_AVATAR_STATS_GENERAL/GUI_AVATAR_STATS_GENERAL_EXPERIENCE"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "NA"
+horizontal_alignment = 1
+
+[node name="GUI_AVATAR_STATS_GENERAL_LEVEL" type="HBoxContainer" parent="GUI/GUI_VBOX/GUI_TOOLBAR/GUI_TOOLBAR_SPLIT/GUI_TOOLBAR_CENTER/GUI_AVATAR_STATS/GUI_AVATAR_STATS_VBOX/GUI_AVATAR_STATS_GENERAL"]
+layout_mode = 2
+
+[node name="GUI_AVATAR_STATS_GENERAL_LEVEL_LABEL" type="Label" parent="GUI/GUI_VBOX/GUI_TOOLBAR/GUI_TOOLBAR_SPLIT/GUI_TOOLBAR_CENTER/GUI_AVATAR_STATS/GUI_AVATAR_STATS_VBOX/GUI_AVATAR_STATS_GENERAL/GUI_AVATAR_STATS_GENERAL_LEVEL"]
+layout_mode = 2
+text = "Level :"
+horizontal_alignment = 1
+
+[node name="GUI_AVATAR_STATS_GENERAL_LEVEL_VALUE" type="Label" parent="GUI/GUI_VBOX/GUI_TOOLBAR/GUI_TOOLBAR_SPLIT/GUI_TOOLBAR_CENTER/GUI_AVATAR_STATS/GUI_AVATAR_STATS_VBOX/GUI_AVATAR_STATS_GENERAL/GUI_AVATAR_STATS_GENERAL_LEVEL"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "NA"
+horizontal_alignment = 1
+
+[node name="GUI_AVATAR_STATS_GENERAL2" type="VBoxContainer" parent="GUI/GUI_VBOX/GUI_TOOLBAR/GUI_TOOLBAR_SPLIT/GUI_TOOLBAR_CENTER/GUI_AVATAR_STATS/GUI_AVATAR_STATS_VBOX"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="GUI_AVATAR_STATS_GENERAL_STRENGTH" type="HBoxContainer" parent="GUI/GUI_VBOX/GUI_TOOLBAR/GUI_TOOLBAR_SPLIT/GUI_TOOLBAR_CENTER/GUI_AVATAR_STATS/GUI_AVATAR_STATS_VBOX/GUI_AVATAR_STATS_GENERAL2"]
+layout_mode = 2
+
+[node name="GUI_AVATAR_STATS_GENERAL_STRENGTH_LABEL" type="Label" parent="GUI/GUI_VBOX/GUI_TOOLBAR/GUI_TOOLBAR_SPLIT/GUI_TOOLBAR_CENTER/GUI_AVATAR_STATS/GUI_AVATAR_STATS_VBOX/GUI_AVATAR_STATS_GENERAL2/GUI_AVATAR_STATS_GENERAL_STRENGTH"]
+layout_mode = 2
+text = "Strength :"
+horizontal_alignment = 1
+
+[node name="GUI_AVATAR_STATS_GENERAL_STRENGTH_VALUE" type="Label" parent="GUI/GUI_VBOX/GUI_TOOLBAR/GUI_TOOLBAR_SPLIT/GUI_TOOLBAR_CENTER/GUI_AVATAR_STATS/GUI_AVATAR_STATS_VBOX/GUI_AVATAR_STATS_GENERAL2/GUI_AVATAR_STATS_GENERAL_STRENGTH"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "NA"
+horizontal_alignment = 1
+
+[node name="GUI_AVATAR_STATS_GENERAL_DEXTERITY" type="HBoxContainer" parent="GUI/GUI_VBOX/GUI_TOOLBAR/GUI_TOOLBAR_SPLIT/GUI_TOOLBAR_CENTER/GUI_AVATAR_STATS/GUI_AVATAR_STATS_VBOX/GUI_AVATAR_STATS_GENERAL2"]
+layout_mode = 2
+
+[node name="GUI_AVATAR_STATS_GENERAL_DEXTERITY_LABEL" type="Label" parent="GUI/GUI_VBOX/GUI_TOOLBAR/GUI_TOOLBAR_SPLIT/GUI_TOOLBAR_CENTER/GUI_AVATAR_STATS/GUI_AVATAR_STATS_VBOX/GUI_AVATAR_STATS_GENERAL2/GUI_AVATAR_STATS_GENERAL_DEXTERITY"]
+layout_mode = 2
+text = "Dexterity :"
+horizontal_alignment = 1
+
+[node name="GUI_AVATAR_STATS_GENERAL_DEXTERITY_VALUE" type="Label" parent="GUI/GUI_VBOX/GUI_TOOLBAR/GUI_TOOLBAR_SPLIT/GUI_TOOLBAR_CENTER/GUI_AVATAR_STATS/GUI_AVATAR_STATS_VBOX/GUI_AVATAR_STATS_GENERAL2/GUI_AVATAR_STATS_GENERAL_DEXTERITY"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "NA"
+horizontal_alignment = 1
+
+[node name="GUI_AVATAR_STATS_GENERAL_INTELLIGENCE" type="HBoxContainer" parent="GUI/GUI_VBOX/GUI_TOOLBAR/GUI_TOOLBAR_SPLIT/GUI_TOOLBAR_CENTER/GUI_AVATAR_STATS/GUI_AVATAR_STATS_VBOX/GUI_AVATAR_STATS_GENERAL2"]
+layout_mode = 2
+
+[node name="GUI_AVATAR_STATS_GENERAL_INTELLIGENCE_LABEL" type="Label" parent="GUI/GUI_VBOX/GUI_TOOLBAR/GUI_TOOLBAR_SPLIT/GUI_TOOLBAR_CENTER/GUI_AVATAR_STATS/GUI_AVATAR_STATS_VBOX/GUI_AVATAR_STATS_GENERAL2/GUI_AVATAR_STATS_GENERAL_INTELLIGENCE"]
+layout_mode = 2
+text = "Intelligence :"
+horizontal_alignment = 1
+
+[node name="GUI_AVATAR_STATS_GENERAL_INTELLIGENCE_VALUE" type="Label" parent="GUI/GUI_VBOX/GUI_TOOLBAR/GUI_TOOLBAR_SPLIT/GUI_TOOLBAR_CENTER/GUI_AVATAR_STATS/GUI_AVATAR_STATS_VBOX/GUI_AVATAR_STATS_GENERAL2/GUI_AVATAR_STATS_GENERAL_INTELLIGENCE"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "NA"
+horizontal_alignment = 1
+
+[node name="GUI_AUTOBATTLE_STATUS_PANEL" type="Panel" parent="GUI/GUI_VBOX/GUI_TOOLBAR/GUI_TOOLBAR_SPLIT/GUI_TOOLBAR_CENTER"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="GUI_AUTOBATTLE_STATUS_VBOX" type="VBoxContainer" parent="GUI/GUI_VBOX/GUI_TOOLBAR/GUI_TOOLBAR_SPLIT/GUI_TOOLBAR_CENTER/GUI_AUTOBATTLE_STATUS_PANEL"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GUI_AUTOBATTLE_STATUS_LABEL" type="Label" parent="GUI/GUI_VBOX/GUI_TOOLBAR/GUI_TOOLBAR_SPLIT/GUI_TOOLBAR_CENTER/GUI_AUTOBATTLE_STATUS_PANEL/GUI_AUTOBATTLE_STATUS_VBOX"]
+layout_mode = 2
+text = "AUTO-BATTLE STATUS"
+horizontal_alignment = 1
+
+[node name="GUI_AUTOBATTLE_STATUS_VALUE" type="Label" parent="GUI/GUI_VBOX/GUI_TOOLBAR/GUI_TOOLBAR_SPLIT/GUI_TOOLBAR_CENTER/GUI_AUTOBATTLE_STATUS_PANEL/GUI_AUTOBATTLE_STATUS_VBOX"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Disabled"
+horizontal_alignment = 1
+
+[node name="GUI_TOOLBAR_AUTOBATTLE_BUTTON" type="Button" parent="GUI/GUI_VBOX/GUI_TOOLBAR/GUI_TOOLBAR_SPLIT/GUI_TOOLBAR_CENTER/GUI_AUTOBATTLE_STATUS_PANEL/GUI_AUTOBATTLE_STATUS_VBOX"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+text = "Activate"
+
+[node name="GUI_AUTOBATTLE_ZONE_PANEL" type="Panel" parent="GUI/GUI_VBOX/GUI_TOOLBAR/GUI_TOOLBAR_SPLIT/GUI_TOOLBAR_CENTER"]
+layout_mode = 2
+size_flags_vertical = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="GUI_AUTOBATTLE_ZONE_HBOX" type="VBoxContainer" parent="GUI/GUI_VBOX/GUI_TOOLBAR/GUI_TOOLBAR_SPLIT/GUI_TOOLBAR_CENTER/GUI_AUTOBATTLE_ZONE_PANEL"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+
+[node name="GUI_AUTOBATTLE_ZONE_SELECT" type="HBoxContainer" parent="GUI/GUI_VBOX/GUI_TOOLBAR/GUI_TOOLBAR_SPLIT/GUI_TOOLBAR_CENTER/GUI_AUTOBATTLE_ZONE_PANEL/GUI_AUTOBATTLE_ZONE_HBOX"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="GUI_AUTOBATTLE_ZONE_SELECT_LABEL" type="Label" parent="GUI/GUI_VBOX/GUI_TOOLBAR/GUI_TOOLBAR_SPLIT/GUI_TOOLBAR_CENTER/GUI_AUTOBATTLE_ZONE_PANEL/GUI_AUTOBATTLE_ZONE_HBOX/GUI_AUTOBATTLE_ZONE_SELECT"]
+layout_mode = 2
+text = "Zone:"
+
+[node name="GUI_AUTOBATTLE_ZONE_SELECT_BUTTON" type="OptionButton" parent="GUI/GUI_VBOX/GUI_TOOLBAR/GUI_TOOLBAR_SPLIT/GUI_TOOLBAR_CENTER/GUI_AUTOBATTLE_ZONE_PANEL/GUI_AUTOBATTLE_ZONE_HBOX/GUI_AUTOBATTLE_ZONE_SELECT"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+selected = 0
+fit_to_longest_item = false
+item_count = 2
+popup/item_0/text = "Sewers"
+popup/item_0/id = 0
+popup/item_1/text = "Forest"
+popup/item_1/id = 1
+
+[node name="GUI_AUTOBATTLE_ZONE_LEVEL" type="HBoxContainer" parent="GUI/GUI_VBOX/GUI_TOOLBAR/GUI_TOOLBAR_SPLIT/GUI_TOOLBAR_CENTER/GUI_AUTOBATTLE_ZONE_PANEL/GUI_AUTOBATTLE_ZONE_HBOX"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="GUI_AUTOBATTLE_ZONE_LEVEL_LABEL" type="Label" parent="GUI/GUI_VBOX/GUI_TOOLBAR/GUI_TOOLBAR_SPLIT/GUI_TOOLBAR_CENTER/GUI_AUTOBATTLE_ZONE_PANEL/GUI_AUTOBATTLE_ZONE_HBOX/GUI_AUTOBATTLE_ZONE_LEVEL"]
+layout_mode = 2
+text = "Level:"
+
+[node name="GUI_AUTOBATTLE_ZONE_LEVEL_BUTTON" type="OptionButton" parent="GUI/GUI_VBOX/GUI_TOOLBAR/GUI_TOOLBAR_SPLIT/GUI_TOOLBAR_CENTER/GUI_AUTOBATTLE_ZONE_PANEL/GUI_AUTOBATTLE_ZONE_HBOX/GUI_AUTOBATTLE_ZONE_LEVEL"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+selected = 0
+fit_to_longest_item = false
+item_count = 1
+popup/item_0/text = "1"
+popup/item_0/id = 0
+
+[node name="GUI_TOOLBAR_RIGHT" type="HBoxContainer" parent="GUI/GUI_VBOX/GUI_TOOLBAR/GUI_TOOLBAR_SPLIT"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="GUI_AVATAR_STATS_DEFENSE" type="VBoxContainer" parent="GUI/GUI_VBOX/GUI_TOOLBAR/GUI_TOOLBAR_SPLIT/GUI_TOOLBAR_RIGHT"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="GUI_AVATAR_STATS_DEFENSE_PHYSICAL_DEFENSE" type="HBoxContainer" parent="GUI/GUI_VBOX/GUI_TOOLBAR/GUI_TOOLBAR_SPLIT/GUI_TOOLBAR_RIGHT/GUI_AVATAR_STATS_DEFENSE"]
+layout_mode = 2
+
+[node name="GUI_AVATAR_STATS_DEFENSE_PHYSICAL_DEFENSE_LABEL" type="Label" parent="GUI/GUI_VBOX/GUI_TOOLBAR/GUI_TOOLBAR_SPLIT/GUI_TOOLBAR_RIGHT/GUI_AVATAR_STATS_DEFENSE/GUI_AVATAR_STATS_DEFENSE_PHYSICAL_DEFENSE"]
+layout_mode = 2
+text = "Physical defense :"
+horizontal_alignment = 1
+
+[node name="GUI_AVATAR_STATS_DEFENSE_PHYSICAL_DEFENSE_VALUE" type="Label" parent="GUI/GUI_VBOX/GUI_TOOLBAR/GUI_TOOLBAR_SPLIT/GUI_TOOLBAR_RIGHT/GUI_AVATAR_STATS_DEFENSE/GUI_AVATAR_STATS_DEFENSE_PHYSICAL_DEFENSE"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "NA"
+horizontal_alignment = 1
+
+[node name="VSeparator" type="VSeparator" parent="GUI/GUI_VBOX/GUI_TOOLBAR/GUI_TOOLBAR_SPLIT/GUI_TOOLBAR_RIGHT"]
+layout_mode = 2
+
+[node name="GUI_TOOLBAR_MANA" type="VBoxContainer" parent="GUI/GUI_VBOX/GUI_TOOLBAR/GUI_TOOLBAR_SPLIT/GUI_TOOLBAR_RIGHT"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="GUI_TOOLBAR_MANA_LABEL" type="Label" parent="GUI/GUI_VBOX/GUI_TOOLBAR/GUI_TOOLBAR_SPLIT/GUI_TOOLBAR_RIGHT/GUI_TOOLBAR_MANA"]
+layout_mode = 2
+text = "Mana"
+horizontal_alignment = 1
+
+[node name="GUI_TOOLBAR_MANA_VALUE" type="Label" parent="GUI/GUI_VBOX/GUI_TOOLBAR/GUI_TOOLBAR_SPLIT/GUI_TOOLBAR_RIGHT/GUI_TOOLBAR_MANA"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "NA"
+horizontal_alignment = 1
+
+[node name="VSeparator2" type="VSeparator" parent="GUI/GUI_VBOX/GUI_TOOLBAR/GUI_TOOLBAR_SPLIT/GUI_TOOLBAR_RIGHT"]
+layout_mode = 2
+
+[node name="GUI_AVATAR_SOCKETS" type="Panel" parent="GUI/GUI_VBOX"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="GUI_AVATAR_SOCKETS_VBOX" type="HBoxContainer" parent="GUI/GUI_VBOX/GUI_AVATAR_SOCKETS"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GUI_AVATAR_SOCKET_1" type="Panel" parent="GUI/GUI_VBOX/GUI_AVATAR_SOCKETS/GUI_AVATAR_SOCKETS_VBOX"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="GUI_AVATAR_SOCKET_1_CENTER" type="CenterContainer" parent="GUI/GUI_VBOX/GUI_AVATAR_SOCKETS/GUI_AVATAR_SOCKETS_VBOX/GUI_AVATAR_SOCKET_1"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GUI_AVATAR_SOCKET_1_LABEL" type="Label" parent="GUI/GUI_VBOX/GUI_AVATAR_SOCKETS/GUI_AVATAR_SOCKETS_VBOX/GUI_AVATAR_SOCKET_1/GUI_AVATAR_SOCKET_1_CENTER"]
+layout_mode = 2
+text = "Socket 1"
+
+[node name="GUI_AVATAR_SOCKET_2" type="Panel" parent="GUI/GUI_VBOX/GUI_AVATAR_SOCKETS/GUI_AVATAR_SOCKETS_VBOX"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="GUI_AVATAR_SOCKET_2_LABEL" type="Label" parent="GUI/GUI_VBOX/GUI_AVATAR_SOCKETS/GUI_AVATAR_SOCKETS_VBOX/GUI_AVATAR_SOCKET_2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Socket 2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GUI_AVATAR_SOCKET_3" type="Panel" parent="GUI/GUI_VBOX/GUI_AVATAR_SOCKETS/GUI_AVATAR_SOCKETS_VBOX"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="GUI_AVATAR_SOCKET_3_LABEL" type="Label" parent="GUI/GUI_VBOX/GUI_AVATAR_SOCKETS/GUI_AVATAR_SOCKETS_VBOX/GUI_AVATAR_SOCKET_3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Socket 3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GUI_AVATAR_SOCKET_4" type="Panel" parent="GUI/GUI_VBOX/GUI_AVATAR_SOCKETS/GUI_AVATAR_SOCKETS_VBOX"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="GUI_AVATAR_SOCKET_4_LABEL" type="Label" parent="GUI/GUI_VBOX/GUI_AVATAR_SOCKETS/GUI_AVATAR_SOCKETS_VBOX/GUI_AVATAR_SOCKET_4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Socket 4"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GUI_AVATAR_SOCKET_5" type="Panel" parent="GUI/GUI_VBOX/GUI_AVATAR_SOCKETS/GUI_AVATAR_SOCKETS_VBOX"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="GUI_AVATAR_SOCKET_5_LABEL" type="Label" parent="GUI/GUI_VBOX/GUI_AVATAR_SOCKETS/GUI_AVATAR_SOCKETS_VBOX/GUI_AVATAR_SOCKET_5"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Socket 5"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GUI_INVENTORY" type="Panel" parent="GUI/GUI_VBOX"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="GUI_INVENTORY_ROWS" type="VBoxContainer" parent="GUI/GUI_VBOX/GUI_INVENTORY"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GUI_INVENTORY_ROW1" type="HBoxContainer" parent="GUI/GUI_VBOX/GUI_INVENTORY/GUI_INVENTORY_ROWS"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="GUI_INVENTORY_ROW1_1" type="Panel" parent="GUI/GUI_VBOX/GUI_INVENTORY/GUI_INVENTORY_ROWS/GUI_INVENTORY_ROW1"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="GUI_INVENTORY_ROW1_2" type="Panel" parent="GUI/GUI_VBOX/GUI_INVENTORY/GUI_INVENTORY_ROWS/GUI_INVENTORY_ROW1"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="GUI_INVENTORY_ROW1_3" type="Panel" parent="GUI/GUI_VBOX/GUI_INVENTORY/GUI_INVENTORY_ROWS/GUI_INVENTORY_ROW1"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="GUI_INVENTORY_ROW1_4" type="Panel" parent="GUI/GUI_VBOX/GUI_INVENTORY/GUI_INVENTORY_ROWS/GUI_INVENTORY_ROW1"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="GUI_INVENTORY_ROW1_5" type="Panel" parent="GUI/GUI_VBOX/GUI_INVENTORY/GUI_INVENTORY_ROWS/GUI_INVENTORY_ROW1"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="GUI_INVENTORY_ROW1_6" type="Panel" parent="GUI/GUI_VBOX/GUI_INVENTORY/GUI_INVENTORY_ROWS/GUI_INVENTORY_ROW1"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="GUI_INVENTORY_ROW1_7" type="Panel" parent="GUI/GUI_VBOX/GUI_INVENTORY/GUI_INVENTORY_ROWS/GUI_INVENTORY_ROW1"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="GUI_INVENTORY_ROW1_8" type="Panel" parent="GUI/GUI_VBOX/GUI_INVENTORY/GUI_INVENTORY_ROWS/GUI_INVENTORY_ROW1"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="GUI_INVENTORY_ROW1_9" type="Panel" parent="GUI/GUI_VBOX/GUI_INVENTORY/GUI_INVENTORY_ROWS/GUI_INVENTORY_ROW1"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="GUI_INVENTORY_ROW1_10" type="Panel" parent="GUI/GUI_VBOX/GUI_INVENTORY/GUI_INVENTORY_ROWS/GUI_INVENTORY_ROW1"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="GUI_INVENTORY_ROW2" type="HBoxContainer" parent="GUI/GUI_VBOX/GUI_INVENTORY/GUI_INVENTORY_ROWS"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="GUI_INVENTORY_ROW2_1" type="Panel" parent="GUI/GUI_VBOX/GUI_INVENTORY/GUI_INVENTORY_ROWS/GUI_INVENTORY_ROW2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="GUI_INVENTORY_ROW2_2" type="Panel" parent="GUI/GUI_VBOX/GUI_INVENTORY/GUI_INVENTORY_ROWS/GUI_INVENTORY_ROW2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="GUI_INVENTORY_ROW2_3" type="Panel" parent="GUI/GUI_VBOX/GUI_INVENTORY/GUI_INVENTORY_ROWS/GUI_INVENTORY_ROW2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="GUI_INVENTORY_ROW2_4" type="Panel" parent="GUI/GUI_VBOX/GUI_INVENTORY/GUI_INVENTORY_ROWS/GUI_INVENTORY_ROW2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="GUI_INVENTORY_ROW2_5" type="Panel" parent="GUI/GUI_VBOX/GUI_INVENTORY/GUI_INVENTORY_ROWS/GUI_INVENTORY_ROW2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="GUI_INVENTORY_ROW2_6" type="Panel" parent="GUI/GUI_VBOX/GUI_INVENTORY/GUI_INVENTORY_ROWS/GUI_INVENTORY_ROW2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="GUI_INVENTORY_ROW2_7" type="Panel" parent="GUI/GUI_VBOX/GUI_INVENTORY/GUI_INVENTORY_ROWS/GUI_INVENTORY_ROW2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="GUI_INVENTORY_ROW2_8" type="Panel" parent="GUI/GUI_VBOX/GUI_INVENTORY/GUI_INVENTORY_ROWS/GUI_INVENTORY_ROW2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="GUI_INVENTORY_ROW2_9" type="Panel" parent="GUI/GUI_VBOX/GUI_INVENTORY/GUI_INVENTORY_ROWS/GUI_INVENTORY_ROW2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="GUI_INVENTORY_ROW2_10" type="Panel" parent="GUI/GUI_VBOX/GUI_INVENTORY/GUI_INVENTORY_ROWS/GUI_INVENTORY_ROW2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="GUI_DEBUG_BAR" type="Panel" parent="GUI/GUI_VBOX"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="GUI_DEBUG_HBOX" type="HBoxContainer" parent="GUI/GUI_VBOX/GUI_DEBUG_BAR"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="GUI_DEBUG_LABEL" type="Label" parent="GUI/GUI_VBOX/GUI_DEBUG_BAR/GUI_DEBUG_HBOX"]
+layout_mode = 2
+text = "DEBUG : "
+
+[node name="GUI_DEBUG_ADD_GEM" type="Button" parent="GUI/GUI_VBOX/GUI_DEBUG_BAR/GUI_DEBUG_HBOX"]
+layout_mode = 2
+text = "ADD_GEM"
+
+[node name="GUI_DEFAULTS" type="Control" parent="GUI"]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="GEM_PANEL_DEFAULT" type="Panel" parent="GUI/GUI_DEFAULTS"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_j5wjh")
+
+[node name="GEM_TEXTURE" type="TextureRect" parent="GUI/GUI_DEFAULTS/GEM_PANEL_DEFAULT"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_hve3p")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="PLAYER" type="Node" parent="."]
+
+[node name="PLAYER_STATS" type="Node" parent="PLAYER"]
+unique_name_in_owner = true
+script = ExtResource("1_80nbo")
+
+[node name="PLAYER_SOCKETS" type="Node" parent="PLAYER"]
+unique_name_in_owner = true
+script = ExtResource("4_eow3j")
+
+[node name="PLAYER_INVENTORY" type="Node" parent="PLAYER"]
+unique_name_in_owner = true
+script = ExtResource("5_vef74")
+
+[node name="AUTOBATTLE" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_e2o6t")
+
+[node name="AUTOBATTLE_TIMER" type="Timer" parent="AUTOBATTLE"]
+unique_name_in_owner = true
+process_callback = 0
+one_shot = true
+
+[node name="AUTOBATTLE_ENEMY" type="Node" parent="AUTOBATTLE"]
+script = ExtResource("3_feb5d")
+
+[node name="AUTOBATTLE_ZONE" type="Node" parent="AUTOBATTLE"]
+script = ExtResource("4_fc0e3")
+
+[node name="GEMS" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("10_hve3p")
+
+[connection signal="pressed" from="GUI/GUI_VBOX/GUI_TOOLBAR/GUI_TOOLBAR_SPLIT/GUI_TOOLBAR_CENTER/GUI_AUTOBATTLE_STATUS_PANEL/GUI_AUTOBATTLE_STATUS_VBOX/GUI_TOOLBAR_AUTOBATTLE_BUTTON" to="AUTOBATTLE" method="_on_gui_toolbar_autobattle_button_pressed"]
+[connection signal="gui_input" from="GUI/GUI_VBOX/GUI_AVATAR_SOCKETS/GUI_AVATAR_SOCKETS_VBOX/GUI_AVATAR_SOCKET_1" to="PLAYER/PLAYER_SOCKETS" method="_on_sockets_gui_input" binds= [1]]
+[connection signal="mouse_entered" from="GUI/GUI_VBOX/GUI_AVATAR_SOCKETS/GUI_AVATAR_SOCKETS_VBOX/GUI_AVATAR_SOCKET_1" to="PLAYER/PLAYER_SOCKETS" method="_on_sockets_mouse_entered" binds= [1]]
+[connection signal="gui_input" from="GUI/GUI_VBOX/GUI_AVATAR_SOCKETS/GUI_AVATAR_SOCKETS_VBOX/GUI_AVATAR_SOCKET_2" to="PLAYER/PLAYER_SOCKETS" method="_on_sockets_gui_input" binds= [2]]
+[connection signal="mouse_entered" from="GUI/GUI_VBOX/GUI_AVATAR_SOCKETS/GUI_AVATAR_SOCKETS_VBOX/GUI_AVATAR_SOCKET_2" to="PLAYER/PLAYER_SOCKETS" method="_on_sockets_mouse_entered" binds= [2]]
+[connection signal="gui_input" from="GUI/GUI_VBOX/GUI_AVATAR_SOCKETS/GUI_AVATAR_SOCKETS_VBOX/GUI_AVATAR_SOCKET_3" to="PLAYER/PLAYER_SOCKETS" method="_on_sockets_gui_input" binds= [3]]
+[connection signal="mouse_entered" from="GUI/GUI_VBOX/GUI_AVATAR_SOCKETS/GUI_AVATAR_SOCKETS_VBOX/GUI_AVATAR_SOCKET_3" to="PLAYER/PLAYER_SOCKETS" method="_on_sockets_mouse_entered" binds= [3]]
+[connection signal="gui_input" from="GUI/GUI_VBOX/GUI_AVATAR_SOCKETS/GUI_AVATAR_SOCKETS_VBOX/GUI_AVATAR_SOCKET_4" to="PLAYER/PLAYER_SOCKETS" method="_on_sockets_gui_input" binds= [4]]
+[connection signal="mouse_entered" from="GUI/GUI_VBOX/GUI_AVATAR_SOCKETS/GUI_AVATAR_SOCKETS_VBOX/GUI_AVATAR_SOCKET_4" to="PLAYER/PLAYER_SOCKETS" method="_on_sockets_mouse_entered" binds= [4]]
+[connection signal="gui_input" from="GUI/GUI_VBOX/GUI_AVATAR_SOCKETS/GUI_AVATAR_SOCKETS_VBOX/GUI_AVATAR_SOCKET_5" to="PLAYER/PLAYER_SOCKETS" method="_on_sockets_gui_input" binds= [5]]
+[connection signal="mouse_entered" from="GUI/GUI_VBOX/GUI_AVATAR_SOCKETS/GUI_AVATAR_SOCKETS_VBOX/GUI_AVATAR_SOCKET_5" to="PLAYER/PLAYER_SOCKETS" method="_on_sockets_mouse_entered" binds= [5]]
+[connection signal="gui_input" from="GUI/GUI_VBOX/GUI_INVENTORY/GUI_INVENTORY_ROWS/GUI_INVENTORY_ROW1/GUI_INVENTORY_ROW1_1" to="PLAYER/PLAYER_INVENTORY" method="_on_inventory_gui_input" binds= ["1_1"]]
+[connection signal="gui_input" from="GUI/GUI_VBOX/GUI_INVENTORY/GUI_INVENTORY_ROWS/GUI_INVENTORY_ROW1/GUI_INVENTORY_ROW1_2" to="PLAYER/PLAYER_INVENTORY" method="_on_inventory_gui_input" binds= ["1_2"]]
+[connection signal="gui_input" from="GUI/GUI_VBOX/GUI_INVENTORY/GUI_INVENTORY_ROWS/GUI_INVENTORY_ROW1/GUI_INVENTORY_ROW1_3" to="PLAYER/PLAYER_INVENTORY" method="_on_inventory_gui_input" binds= ["1_3"]]
+[connection signal="gui_input" from="GUI/GUI_VBOX/GUI_INVENTORY/GUI_INVENTORY_ROWS/GUI_INVENTORY_ROW1/GUI_INVENTORY_ROW1_4" to="PLAYER/PLAYER_INVENTORY" method="_on_inventory_gui_input" binds= ["1_4"]]
+[connection signal="gui_input" from="GUI/GUI_VBOX/GUI_INVENTORY/GUI_INVENTORY_ROWS/GUI_INVENTORY_ROW1/GUI_INVENTORY_ROW1_5" to="PLAYER/PLAYER_INVENTORY" method="_on_inventory_gui_input" binds= ["1_5"]]
+[connection signal="gui_input" from="GUI/GUI_VBOX/GUI_INVENTORY/GUI_INVENTORY_ROWS/GUI_INVENTORY_ROW1/GUI_INVENTORY_ROW1_6" to="PLAYER/PLAYER_INVENTORY" method="_on_inventory_gui_input" binds= ["1_6"]]
+[connection signal="gui_input" from="GUI/GUI_VBOX/GUI_INVENTORY/GUI_INVENTORY_ROWS/GUI_INVENTORY_ROW1/GUI_INVENTORY_ROW1_7" to="PLAYER/PLAYER_INVENTORY" method="_on_inventory_gui_input" binds= ["1_7"]]
+[connection signal="gui_input" from="GUI/GUI_VBOX/GUI_INVENTORY/GUI_INVENTORY_ROWS/GUI_INVENTORY_ROW1/GUI_INVENTORY_ROW1_8" to="PLAYER/PLAYER_INVENTORY" method="_on_inventory_gui_input" binds= ["1_8"]]
+[connection signal="gui_input" from="GUI/GUI_VBOX/GUI_INVENTORY/GUI_INVENTORY_ROWS/GUI_INVENTORY_ROW1/GUI_INVENTORY_ROW1_9" to="PLAYER/PLAYER_INVENTORY" method="_on_inventory_gui_input" binds= ["1_9"]]
+[connection signal="gui_input" from="GUI/GUI_VBOX/GUI_INVENTORY/GUI_INVENTORY_ROWS/GUI_INVENTORY_ROW1/GUI_INVENTORY_ROW1_10" to="PLAYER/PLAYER_INVENTORY" method="_on_inventory_gui_input" binds= ["1_10"]]
+[connection signal="gui_input" from="GUI/GUI_VBOX/GUI_INVENTORY/GUI_INVENTORY_ROWS/GUI_INVENTORY_ROW2/GUI_INVENTORY_ROW2_1" to="PLAYER/PLAYER_INVENTORY" method="_on_inventory_gui_input" binds= ["2_1"]]
+[connection signal="gui_input" from="GUI/GUI_VBOX/GUI_INVENTORY/GUI_INVENTORY_ROWS/GUI_INVENTORY_ROW2/GUI_INVENTORY_ROW2_2" to="PLAYER/PLAYER_INVENTORY" method="_on_inventory_gui_input" binds= ["2_2"]]
+[connection signal="gui_input" from="GUI/GUI_VBOX/GUI_INVENTORY/GUI_INVENTORY_ROWS/GUI_INVENTORY_ROW2/GUI_INVENTORY_ROW2_3" to="PLAYER/PLAYER_INVENTORY" method="_on_inventory_gui_input" binds= ["2_3"]]
+[connection signal="gui_input" from="GUI/GUI_VBOX/GUI_INVENTORY/GUI_INVENTORY_ROWS/GUI_INVENTORY_ROW2/GUI_INVENTORY_ROW2_4" to="PLAYER/PLAYER_INVENTORY" method="_on_inventory_gui_input" binds= ["2_4"]]
+[connection signal="gui_input" from="GUI/GUI_VBOX/GUI_INVENTORY/GUI_INVENTORY_ROWS/GUI_INVENTORY_ROW2/GUI_INVENTORY_ROW2_5" to="PLAYER/PLAYER_INVENTORY" method="_on_inventory_gui_input" binds= ["2_5"]]
+[connection signal="gui_input" from="GUI/GUI_VBOX/GUI_INVENTORY/GUI_INVENTORY_ROWS/GUI_INVENTORY_ROW2/GUI_INVENTORY_ROW2_6" to="PLAYER/PLAYER_INVENTORY" method="_on_inventory_gui_input" binds= ["2_6"]]
+[connection signal="gui_input" from="GUI/GUI_VBOX/GUI_INVENTORY/GUI_INVENTORY_ROWS/GUI_INVENTORY_ROW2/GUI_INVENTORY_ROW2_7" to="PLAYER/PLAYER_INVENTORY" method="_on_inventory_gui_input" binds= ["2_7"]]
+[connection signal="gui_input" from="GUI/GUI_VBOX/GUI_INVENTORY/GUI_INVENTORY_ROWS/GUI_INVENTORY_ROW2/GUI_INVENTORY_ROW2_8" to="PLAYER/PLAYER_INVENTORY" method="_on_inventory_gui_input" binds= ["2_8"]]
+[connection signal="gui_input" from="GUI/GUI_VBOX/GUI_INVENTORY/GUI_INVENTORY_ROWS/GUI_INVENTORY_ROW2/GUI_INVENTORY_ROW2_9" to="PLAYER/PLAYER_INVENTORY" method="_on_inventory_gui_input" binds= ["2_9"]]
+[connection signal="gui_input" from="GUI/GUI_VBOX/GUI_INVENTORY/GUI_INVENTORY_ROWS/GUI_INVENTORY_ROW2/GUI_INVENTORY_ROW2_10" to="PLAYER/PLAYER_INVENTORY" method="_on_inventory_gui_input" binds= ["2_10"]]
+[connection signal="pressed" from="GUI/GUI_VBOX/GUI_DEBUG_BAR/GUI_DEBUG_HBOX/GUI_DEBUG_ADD_GEM" to="GEMS" method="_on_gui_debug_add_gem_button_pressed"]
+[connection signal="timeout" from="AUTOBATTLE/AUTOBATTLE_TIMER" to="AUTOBATTLE" method="_on_autobattle_timer_timeout"]

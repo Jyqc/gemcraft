@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="gem" load_steps=3 format=3 uid="uid://07v5o3a2w4q3"]
+
+[ext_resource type="Texture2D" uid="uid://o8jgi51sf5ft" path="res://assets/rupee.png" id="1_61drd"]
+[ext_resource type="Script" uid="uid://c5jjn2vfi51bl" path="res://scripts/gem/gem.gd" id="2_5yvjb"]
+
+[resource]
+script = ExtResource("2_5yvjb")
+picture = ExtResource("1_61drd")
+name = "Ruby gem"
+type = 1
+level = 1
+value = 100
+metadata/_custom_type_script = "uid://c5jjn2vfi51bl"

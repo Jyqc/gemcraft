@@ -1,0 +1,6 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cx6ubxnxmnkrm"]
+
+[ext_resource type="Script" uid="uid://bhic8q37ugkvp" path="res://scripts/gem/gems.gd" id="1_b2rmj"]
+
+[resource]
+script = ExtResource("1_b2rmj")
