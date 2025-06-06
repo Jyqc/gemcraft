@@ -12,6 +12,10 @@ var selected_gem
 @onready var sockets = %PLAYER_SOCKETS
 @onready var gem_panel_default = %GEM_PANEL_DEFAULT
 
+@onready var gem_panel_name = %GEM_PANEL_NAME
+@onready var gem_panel_strenght = %GEM_PANEL_STRENGHT_VALUE
+@onready var gem_panel_dexterity = %GEM_PANEL_DEXTERITY_VALUE
+@onready var gem_panel_intelligence = %GEM_PANEL_INTELLIGENCE_VALUE
 @onready var gem_selected_theme = preload("res://themes/gem_selected.tres")
 @onready var gem_unselected_theme = preload("res://themes/gem_unselected.tres")
 
@@ -80,6 +84,7 @@ func _on_gem_panel_gui_input(event: InputEvent, extra_arg_0: String) -> void:
 			selected_gem.set_theme(gem_unselected_theme)
 		selected_gem_node.set_theme(gem_selected_theme)
 		selected_gem = selected_gem_node
+		refresh_gem_panel(extra_arg_0)
 		gem_was_selected()
 		
 	elif event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT:
@@ -89,6 +94,13 @@ func _on_gem_panel_gui_input(event: InputEvent, extra_arg_0: String) -> void:
 			selected_gem.set_theme(gem_unselected_theme)
 			gem_was_unselected()
 			selected_gem = null
+
+func refresh_gem_panel(n):
+	gem_panel_strenght.text = str(gems_dictionary[n+"_STRENGHT"])
+	gem_panel_dexterity.text = str(gems_dictionary[n+"_DEXTERITY"])
+	gem_panel_intelligence.text = str(gems_dictionary[n+"_INTELLIGENCE"])
+	gem_panel_name.text = n
+	
 
 func gem_was_selected() -> void:
 	for socket_key in sockets.sockets_dictionary.keys():

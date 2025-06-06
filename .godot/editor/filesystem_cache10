@@ -1,6 +1,6 @@
 63f7b34db8d8cdea90c76aacccf841ec
-::res://::1749207976
-game.tscn::PackedScene::9139438556929431809::1749172802::0::1::::<><><>0<>0<><>::uid://bfdcta38v08oo::::res://scripts/player/player_stats.gd<>uid://bqyan2353nj8u::::res://scripts/autobattle/autobattle.gd<>uid://d0ncbgxca8u7w::::res://assets/diamond.png<>uid://bpemsrpr6p1ux::::res://themes/gem_unselected.tres<>uid://d4kya5pqsfguw::::res://scripts/autobattle/autobattle_enemy.gd<>uid://cpv6nw1gwhc8j::::res://scripts/player/player_sockets.gd<>uid://qsjyn8o5st4m::::res://scripts/autobattle/autobattle_zone.gd<>uid://oufx4ru8ilnh::::res://scripts/player/player_inventory.gd<>uid://bhic8q37ugkvp::::res://scripts/gem/gems.gd
+::res://::1749243781
+game.tscn::PackedScene::9139438556929431809::1749207994::0::1::::<><><>0<>0<><>::uid://bfdcta38v08oo::::res://scripts/player/player_stats.gd<>uid://bqyan2353nj8u::::res://scripts/autobattle/autobattle.gd<>uid://d0ncbgxca8u7w::::res://assets/diamond.png<>uid://bpemsrpr6p1ux::::res://themes/gem_unselected.tres<>uid://d4kya5pqsfguw::::res://scripts/autobattle/autobattle_enemy.gd<>uid://cpv6nw1gwhc8j::::res://scripts/player/player_sockets.gd<>uid://qsjyn8o5st4m::::res://scripts/autobattle/autobattle_zone.gd<>uid://oufx4ru8ilnh::::res://scripts/player/player_inventory.gd<>uid://bhic8q37ugkvp::::res://scripts/gem/gems.gd
 icon.svg::CompressedTexture2D::3436052623302390638::1737814760::1749207977::1::::<><><>0<>0<>45785c74c49ad986f8be5258e11de032<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
 README.md::TextFile::-1::1749207851::0::1::::<><><>0<>0<><>::
 ::res://addons/::1749204444
@@ -11,7 +11,7 @@ THIRDPARTY.md::TextFile::-1::1749204445::0::1::::<><><>0<>0<><>::
 ::res://addons/godot-git-plugin/linux/::1749204445
 ::res://addons/godot-git-plugin/macos/::1749204445
 ::res://addons/godot-git-plugin/win64/::1749204444
-::res://assets/::1748563287
+::res://assets/::1749207977
 amethyst.png::CompressedTexture2D::667890242864729058::1738408185::1749207977::1::::<><><>0<>0<>323549871b378eef7527ce3f98f1ff9f<>res://.godot/imported/amethyst.png-3a5bf2aa1d9efe683ac6f0508190970d.ctex::
 diamond.png::CompressedTexture2D::8940943623375122222::1738408077::1749207977::1::::<><><>0<>0<>18098526a0164d1a6c66b1de95a28c36<>res://.godot/imported/diamond.png-16d6cb5c688d6ff6d16413f5dc98f66e.ctex::
 emerald.png::CompressedTexture2D::1637365888325027458::1738408130::1749207977::1::::<><><>0<>0<>9ac37b363161b11173e2859dc589c40f<>res://.godot/imported/emerald.png-044e12b0523acae54850dafd2c5924ec.ctex::
@@ -28,9 +28,9 @@ Ruby_gem.tres::Resource/gem::1822110588364370576::1748904495::0::1::::<><><>0<>0
 autobattle.gd::GDScript::3559011926105797634::1749013440::0::1::::<>Node<><>0<>0<><>::
 autobattle_enemy.gd::GDScript::9216841101573030750::1737843605::0::1::::<>Node<><>0<>0<><>::
 autobattle_zone.gd::GDScript::1160770344229223842::1748961411::0::1::::<>Node<><>0<>0<><>::
-::res://scripts/gem/::1749171876
+::res://scripts/gem/::1749207994
 gem.gd::GDScript::6897657195379797093::1749010022::0::1::::gem<>Resource<><>0<>0<><>::
-gems.gd::GDScript::2894438861485234801::1749171876::0::1::::<>Node<><>0<>0<><>::
+gems.gd::GDScript::2894438861485234801::1749207994::0::1::::<>Node<><>0<>0<><>::
 ::res://scripts/player/::1749013765
 player_inventory.gd::GDScript::1024277574629258237::1749008654::0::1::::<>Node<><>0<>0<><>::
 player_sockets.gd::GDScript::5870932592869375691::1749012193::0::1::::<>Node<><>0<>0<><>::
