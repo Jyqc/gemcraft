@@ -6,6 +6,7 @@ var selected_gem
 @export var gems_dictionary : Dictionary
 
 @onready var gem_counter : int = 1
+@onready var gem_name : String
 
 @onready var inventory = %PLAYER_INVENTORY
 @onready var sockets = %PLAYER_SOCKETS
